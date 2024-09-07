@@ -1,5 +1,4 @@
 
-```markdown
 # Object-Oriented Programming Concepts in EncryptionDecryptionGUI Code
 
 ## Overview
