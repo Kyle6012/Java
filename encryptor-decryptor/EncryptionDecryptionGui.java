@@ -97,30 +97,26 @@ public class EncryptionDecryptionGUI extends JFrame {
 
     // Decrypt button action
     private class DecryptButtonListener implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            try {
-                String message = messageField.getText();
-                if (message.isEmpty()) {
-                    resultArea.setText("Please enter a message.");
-                    return;
-                }
-
-                // Encrypt the message using AES
-                String encryptedMessage = encryptAES(message, secretKey);
-
-                // Decrypt the message
-                String decryptedMessage = decryptAES(encryptedMessage, secretKey);
-
-                // Display the decrypted message
-                resultArea.append("Decrypted Message: " + decryptedMessage + "\n");
-
-            } catch (Exception ex) {
-                resultArea.setText("Error during decryption: " + ex.getMessage());
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        try {
+            String encryptedMessage = messageField.getText();  // Assume the user enters the encrypted text to decrypt.
+            if (encryptedMessage.isEmpty()) {
+                resultArea.setText("Please enter an encrypted message.");
+                return;
             }
+
+            // Decrypt the message
+            String decryptedMessage = decryptAES(encryptedMessage, secretKey);
+
+            // Display the decrypted message
+            resultArea.append("Decrypted Message: " + decryptedMessage + "\n");
+
+        } catch (Exception ex) {
+            resultArea.setText("Error during decryption: " + ex.getMessage());
         }
     }
-
+}
     // AES Key generation
     private static SecretKey generateAESKey() throws Exception {
         KeyGenerator keyGenerator = KeyGenerator.getInstance("AES");
